@@ -369,3 +369,162 @@ app.listen(3333);
 ```
 
 Quando eu der o F5 no browser eu verifico que a mensagem foi alterada sem a necessidade de reiniciar o servidor.
+
+## Utilizando os Métodos HTTP
+
+O HTTP é um protocolo de comunicação que é utilizado para a transferência de dados na web.
+
+Métodos Existentes
+
+| Método | Descrição |
+| - | - |
+| GET | Buscar informações do back-end |
+| POST | Criar uma informação no back-end |
+| PUT | Alterar uma informação no back-end |
+| PATH | Alterar uma informação específica |
+| DELETE | Deletar uma informação no back-end |
+
+É importante lembrar que o HTTP é um protocolo stateless, ou seja, ele não guarda estado, ou seja, não guarda informações entre as requisições.
+
+Toda rota deve estar preparada para receber uma requisição e retornar uma resposta.
+
+As rotas são definidas pele método HTTP e pela URL (localhost:3333/users).
+
+A URL deve apontar para um recurso, ou seja, para uma entidade.
+
+Exemplo:
+
+| Método | URL | Descrição |
+| - | - | - |
+| GET | /courses | Listar cursos |
+| GET | /courses/1 | Buscar dados do curso com ID 1 |
+| POST | /courses | Criar um curso |
+| PUT | /courses/1 | Alterar os dados do curso com ID 1 |
+| DELETE | /courses/1 | Deletar o curso com ID 1 |
+
+## Tipos de Parâmetros
+
+Existem 4 tipos de parâmetros que podem ser enviados na requisição.
+
+| Tipo | Descrição |
+| - | - |
+| Header Params | Parâmetros enviados no cabeçalho "headers" da requisição <br>Ex: auth:258dsf5ad8d |
+| Route Params | Parâmetros enviados na URL da requisição para informar a rota desejada <br>Ex: /courses/{id} |
+| Query Params | Parâmetros enviados na URL da requisição para informar um filtro ou parametros de seleção <br>Ex: /courses?id=1 |
+| Body Params | Parâmetros enviados no corpo da requisição "body" para criação ou atualização de um registro <br>Ex: {"name": "Curso 01"} |
+
+## Quais parâmetros utilizar?
+
+Achei um link bacana que explica bem sobre os tipos de parâmetros.
+
+- [Tipos de Parâmetros nas requisições REST](https://blog.rocketseat.com.br/tipos-de-parametros-nas-requisicoes-rest/)
+
+Não que seja uma regra, mas é importante haver uma coerência na utilização dos parâmetros.
+
+Algumas suposições:
+
+- Uma rota de GET não precisa enviar de um "body" pois não irá criar nem alterar dados, porém precisa de parametros de rota e query para encontrar um recurso ou uma lista de recurso e disponibilizar os dados desejados.
+- Uma rota de POST não precisa enviar parâmetros de rota nem de query pois apenas irá criar um novo registro, porém precisa de um "body" para saber o que criar.
+- Uma rota de PUT precisa de um "body" para atualizar um registro ou um grupo de regitros e de parâmetros de rota e query para encontrar os recursos corretos a atualizar.
+- Uma rota de PATH precisa de um "body" para atualizar um registro e de parâmetros de rota para encontrar o recurso correto a atualizar, porém não precisa de parametros de query pois irá agir em apenas um único registro.
+- Uma rota de DELETE não precisa de um "body" porém precisa de parâmetros de rota para encontrar o recurso correto a atualizar, porém não precisa de parametros de query pois irá agir em apenas um único registro.
+
+Resumo:
+
+| Tipo | Headers | Route | Query | Body |
+| - | - | - | - | - |
+| Get | Sim | Sim | Sim | Não |
+| Post | Sim | Não | Não | Sim |
+| Put | Sim | Sim | Sim | Sim |
+| Path | Sim | Sim | Sim | Sim |
+| Delete | Sim | Sim | Sim | Não |
+
+## Tipos de retorno
+
+Existem alguns tipos de retorno que podem ser enviados na resposta, os principais são:
+
+| Tipo | Descrição |
+| - | - |
+| Texto | Retorna uma String |
+| XML | Retorna um arquivo XML |
+| JSON | Retorna um objeto JSON |
+| HTML | Retorna um arquivo HTML |
+
+Normalmente em API do tipo REST retornamos um JSON.
+
+## Códigos de Status
+
+Os códigos de status são utilizados para informar o status da requisição.
+
+| Código | Descrição |
+| - | - |
+| 1xx | Informação |
+| 2xx | Sucesso |
+| 3xx | Redirecionamento |
+| 4xx | Erro do cliente |
+| 5xx | Erro do servidor |
+
+## Criando rotas com Express
+
+Para criar uma rota com o Express é bem simples, basta utilizar o método HTTP desejado e passar a URL e uma função que será executada quando a rota for chamada.
+
+```js
+
+// Rota de GET
+// Retorna uma lista de cursos
+app.get("/courses", (request, response) => {
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+  ]);
+});
+
+// Rota de POST
+// Cria um novo curso
+// No exemplo abaixo incluimos o Curso 04
+app.post("/courses", (request, response) => {
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+
+// Rota de PUT
+// Altera um curso
+// No exemplo abaixo altera o curso com ID 2
+app.put("/courses/:id", (request, response) => {
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02 Alterado" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+
+// Rota de PUT
+// Altera um curso
+// No exemplo abaixo altera o curso com ID 2
+app.patch("/courses/:id", (request, response) => {
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03 Alterado" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+
+// Rota de DELETE
+// Deleta um curso
+// No exemplo abaixo deleta o curso com ID 1
+app.delete("/courses/:id", (request, response) => {
+  return response.json([
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+
+```
