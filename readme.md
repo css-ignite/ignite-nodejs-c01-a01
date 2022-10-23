@@ -559,6 +559,38 @@ app.get("/courses", (request, response) => {
 
 ```
 
+## Obtendo os valores enviados via Route Params
+
+Observe que eu tenho varias formas de buscar, posso pegar apenas um parâmetro específico ou todos os parâmetros.
+
+```js
+// Rota de PUT
+// Altera um curso
+// No exemplo abaixo altera o curso com ID 2
+app.put("/courses/:id", (request, response) => {
+  // Criando uma constante para buscar os Route Params
+  const routeParams = request.params;
+
+  // Retornando o routeParams
+  console.log(routeParams);
+
+  // Criando uma constante para buscar os Route Params
+  // Pegando apenas o ID
+  const { id } = request.params;
+
+  // Retornando o id
+  console.log(id);
+
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02 Alterado" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+  
+```
+
 ## Obter os valores enviados via body
 
 Para que eu consiga obter os valores enviados via body eu preciso informar ao Express que irei utilizar o formato JSON.
