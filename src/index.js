@@ -19,6 +19,12 @@ app.get("/json", (req, res) => {
 // Rota de GET
 // Retorna uma lista de cursos
 app.get("/courses", (request, response) => {
+  // Criando uma constante para buscar os Query Params
+  const query = request.query;
+
+  // Retornando no console a lista de query params
+  console.log(query);
+
   return response.json([
     { id: 1, name: "Curso 01" },
     { id: 2, name: "Curso 02" },

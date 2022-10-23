@@ -406,12 +406,12 @@ Exemplo:
 
 Existem 4 tipos de parâmetros que podem ser enviados na requisição.
 
-| Tipo | Descrição |
-| - | - |
-| Header Params | Parâmetros enviados no cabeçalho "headers" da requisição <br>Ex: auth:258dsf5ad8d |
-| Route Params | Parâmetros enviados na URL da requisição para informar a rota desejada <br>Ex: /courses/{id} |
-| Query Params | Parâmetros enviados na URL da requisição para informar um filtro ou parametros de seleção <br>Ex: /courses?id=1 |
-| Body Params | Parâmetros enviados no corpo da requisição "body" para criação ou atualização de um registro <br>Ex: {"name": "Curso 01"} |
+| Tipo | Descrição | Exemplo |
+| - | - | - |
+| Header | Enviados no cabeçalho "headers" da requisição | auth:258dsf5ad8d |
+| Route | Encapsulados na rota utilizando a "/" para separa da URL original | /courses/{id} |
+| Query | Enviados na URL da requisição para informar um filtro ou parametros de seleção | /courses?id=1 |
+| Body | Enviados no corpo da requisição "body" para criação ou atualização de um registro | {"name": "Curso 01"} |
 
 ## Quais parâmetros utilizar?
 
@@ -528,3 +528,12 @@ app.delete("/courses/:id", (request, response) => {
 });
 
 ```
+
+Para testar as rotas não conseguimos utilizar o navegador pois ele não envia os verbos HTTP, então precisamos de uma ferramenta para testar as rotas.
+
+Exemplo de Ferramentas:
+
+- Postman
+- Insomnia
+- Extension do VSCode REST Client
+

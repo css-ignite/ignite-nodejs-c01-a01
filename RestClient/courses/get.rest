@@ -2,4 +2,9 @@
 @baseUrl = http://localhost:3333
 
 // @name = Buscando a Lista de Cursos
-GET {{baseUrl}}/courses HTTP/1.1
+GET {{baseUrl}}/courses?alterados_apos=2022-01-01 HTTP/1.1
+
+###
+
+// @name = Buscando a Lista de Cursos
+GET {{baseUrl}}/courses?alterados_apos=2022-01-01&tipo=1 HTTP/1.1
