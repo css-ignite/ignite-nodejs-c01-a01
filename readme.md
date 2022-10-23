@@ -19,7 +19,6 @@ Estamos aqui criando e enviando o repositório para o github utilizando o Github
 gh repo create
 
 ```
-
 ## Criando a esturura do projeto
 
 Preparando a pasta do projeto para iniciar o desenvolvimento
