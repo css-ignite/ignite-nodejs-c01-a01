@@ -1,0 +1,42 @@
+
+@baseUrl = http://localhost:3333
+
+// @name = Buscando a Lista de Cursos
+GET {{baseUrl}}/courses HTTP/1.1
+
+###
+
+// @name = Criando um novo curso
+POST {{baseUrl}}/courses HTTP/1.1
+content-type: application/json
+
+{
+    "id": 4,
+    "name": "Curso 04"
+}
+
+###
+
+// @name = Atualizando um registro ou um grupo de registros, neste caso registro cujo ID=2
+PUT {{baseUrl}}/courses/2 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Curso 02 Alterado"
+}
+
+###
+
+// @name = Atualizando um único registro cujo ID=3
+PATCH {{baseUrl}}/courses/3 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Curso 03 Alterado"
+}
+
+###
+
+// @name = Apagando o curso de ID=1
+DELETE {{baseUrl}}/courses/1 HTTP/1.1
+content-type: application/json
