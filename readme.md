@@ -537,3 +537,24 @@ Exemplo de Ferramentas:
 - Insomnia
 - Extension do VSCode REST Client
 
+## Obtendo os valores enviados via Query Params
+
+```js
+
+// Rota de GET
+// Retorna uma lista de cursos
+app.get("/courses", (request, response) => {
+  // Criando uma constante para buscar os Query Params
+  const query = request.query;
+
+  // Retornando no console a lista de query params
+  console.log(query);
+
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+  ]);
+});
+
+```
