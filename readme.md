@@ -246,3 +246,126 @@ Agora minha rota irá retornar no browser um JSON  com a mensagem Hello World no
 ```
 
 No Google Chrome eu posso instalar uma extensão chamada JSON Viewer que irá formatar o JSON para uma melhor visualização.
+
+## Instalando o Nodemon
+
+O Nodemon é uma ferramenta que irá monitorar todas as alterações no meu código e reiniciar o servidor automaticamente.
+
+Para instalar o nodemon utilizarei o -D para instalar como dependência de desenvolvimento.
+
+```bash
+
+## Rodando o comando com -D
+npm install nodemon -D
+
+## Rodando o comando com --save-dev
+npm install nodemon --save-dev
+
+```
+
+Agora meu package.json ficou assim, já com o nodemon configurado como dependência de desenvolvimento.
+
+```json
+{
+  "name": "rocketseat-ignite-chapter01-fundamentos-nodejs",
+  "version": "1.0.0",
+  "description": "Fundamentos do NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS/issues"
+  },
+  "homepage": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
+```
+
+Após a instalação eu vou criar um script de desenvolvimento no package.json
+
+```json
+{
+  "name": "rocketseat-ignite-chapter01-fundamentos-nodejs",
+  "version": "1.0.0",
+  "description": "Fundamentos do NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS/issues"
+  },
+  "homepage": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
+```
+
+Agora eu posso executar o comando npm run dev para iniciar o servidor.
+
+Após a execução do comando eu recebo a mensagem de que o servidor esta rodando na porta 3333.
+
+Agora eu posso alterar o código e o servidor irá reiniciar automaticamente.
+
+Vou executar meu servidor agora com o nodemon.
+
+```bash
+
+## Rodando o script configurado no package.json
+npm run dev
+
+```
+
+Qualquer alteração no meu script agora vai refletir no servidor.
+
+Exemplo:
+
+```js
+// Criando uma constante com a instância do express
+const express = require("express");
+
+// Instanciando o express
+const app = express();
+
+// Criando uma rota de Get
+app.get("/", (req, res) => {
+  return res.send("Hello World Ignite - Fundamentos NodeJS");
+});
+
+// Criando uma rota de Get
+app.get("/json", (req, res) => {
+  return res.json({
+    message: "Hello World Ignite - Fundamentos NodeJS",
+  });
+});
+
+// Adicionando um listen para execução do express na porta 3333
+app.listen(3333);
+```
+
+Quando eu der o F5 no browser eu verifico que a mensagem foi alterada sem a necessidade de reiniciar o servidor.
