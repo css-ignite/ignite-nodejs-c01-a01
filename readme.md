@@ -1,4 +1,4 @@
-# Ignite - Fundamentos NodeJS
+# Ignite Trilha NodeJS (Fundamentos NodeJS)
 
 ## Iniciando o repositório do git
 
