@@ -4,6 +4,9 @@ const express = require("express");
 // Instanciando o express
 const app = express();
 
+// Middleware para receber requisições do tipo JSON
+app.use(express.json());
+
 // Criando uma rota de Get
 app.get("/", (req, res) => {
   return res.send("Hello World Ignite - Fundamentos NodeJS");
@@ -36,6 +39,12 @@ app.get("/courses", (request, response) => {
 // Cria um novo curso
 // No exemplo abaixo incluimos o Curso 04
 app.post("/courses", (request, response) => {
+  // Criando uma constante para buscar os Body Params
+  const body = request.body;
+
+  // Retornando o body
+  console.log(body);
+
   return response.json([
     { id: 1, name: "Curso 01" },
     { id: 2, name: "Curso 02" },

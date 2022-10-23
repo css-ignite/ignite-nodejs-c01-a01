@@ -558,3 +558,36 @@ app.get("/courses", (request, response) => {
 });
 
 ```
+
+## Obter os valores enviados via body
+
+Para que eu consiga obter os valores enviados via body eu preciso informar ao Express que irei utilizar o formato JSON.
+
+```js
+
+// Middleware para receber requisições do tipo JSON
+app.use(express.json());
+
+```
+
+Agora eu já consigo verificar os valores do body do tipo Json.
+
+```js
+// Rota de POST
+// Cria um novo curso
+// No exemplo abaixo incluimos o Curso 04
+app.post("/courses", (request, response) => {
+  // Criando uma constante para buscar os Body Params
+  const body = request.body;
+
+  // Retornando o body
+  console.log(body);
+
+  return response.json([
+    { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+```
