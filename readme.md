@@ -154,3 +154,58 @@ Dentro do arquivo eu vou adicionar a pasta node_modules para que o git não envi
 node_modules
 
 ```
+
+## Iniciando a estrutura do projeto
+
+Criarei a pasta src e dentro dela o arquivo index.js
+
+Dentro deste arquivo executarei alguns testes com o express para verificar se o mesmo esta funcionando corretamente.
+
+```js
+
+// Criando uma constante com a instância do express
+const express = require('express');
+
+// Instanciando o express
+const app = express();
+
+// Adicionando um listen para execução do express na porta 3333
+app.listen(3333);
+
+```
+
+Para testar, pasta executar o comando abaixo
+
+```bash
+
+node src/index.js
+
+```
+
+Se tudo ocorreu bem o cursor ira ficar estático e o terminal não irá retornar nada, isso significa que o servidor esta rodando corretamente.
+
+Se executar no browser o endereço [http://localhost:3333](http://localhost:3333) irá retornar uma mensagem de erro 404, isso significa que o servidor esta rodando corretamente porém eu não tenho nenhuma rota configurada.
+
+Vou adicionar uma rota de Get para a rota raiz "/" e retornar uma mensagem de Hello World
+
+```js
+
+// Criando uma constante com a instância do express
+const express = require('express');
+
+// Instanciando o express
+const app = express();
+
+// Criando uma rota de Get
+app.get("/", (req, res) => {
+    return res.send("Hello World");
+});
+
+// Adicionando um listen para execução do express na porta 3333
+app.listen(3333);
+    
+```
+
+Reinicie o servidor e acesse o endereço [http://localhost:3333](http://localhost:3333) e verifique se a mensagem de Hello World esta sendo exibida.
+
+Agora minha rota irá retornar no browser a mensagem Hello World no link [http://localhost:3333](http://localhost:3333).
