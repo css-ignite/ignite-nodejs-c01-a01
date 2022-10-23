@@ -209,3 +209,40 @@ app.listen(3333);
 Reinicie o servidor e acesse o endereço [http://localhost:3333](http://localhost:3333) e verifique se a mensagem de Hello World esta sendo exibida.
 
 Agora minha rota irá retornar no browser a mensagem Hello World no link [http://localhost:3333](http://localhost:3333).
+
+Eu tamém posso retornar um JSON
+
+```js
+// Criando uma constante com a instância do express
+const express = require("express");
+
+// Instanciando o express
+const app = express();
+
+// Criando uma rota de Get para a rota raiz "/"
+app.get("/", (req, res) => {
+  return res.send("Hello World");
+});
+
+// Criando uma rota de Get para a rota "/json"
+app.get("/json", (req, res) => {
+  return res.json({
+    message: "Hello World",
+  });
+});
+
+// Adicionando um listen para execução do express na porta 3333
+app.listen(3333);
+```
+
+Reiniciei o servidor e acessei o endereço [http://localhost:3333/json](http://localhost:3333/json) e verifiquei se o JSON esta sendo retornado corretamente.
+
+Agora minha rota irá retornar no browser um JSON  com a mensagem Hello World no link [http://localhost:3333/json](http://localhost:3333/json).
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+No Google Chrome eu posso instalar uma extensão chamada JSON Viewer que irá formatar o JSON para uma melhor visualização.
