@@ -94,6 +94,18 @@ app.patch("/courses/:id", (request, response) => {
 // Deleta um curso
 // No exemplo abaixo deleta o curso com ID 1
 app.delete("/courses/:id", (request, response) => {
+  // Criando uma constante para buscar os Header Params
+  const header = request.headers;
+
+  // Retornando o header
+  console.log(header);
+
+  // Busca apenas o parametro auth
+  const { auth } = request.headers;
+
+  // Retornando o aut
+  console.log(auth);
+
   return response.json([
     { id: 2, name: "Curso 02" },
     { id: 3, name: "Curso 03" },

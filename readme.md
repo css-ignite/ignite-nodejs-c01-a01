@@ -402,17 +402,6 @@ Exemplo:
 | PUT | /courses/1 | Alterar os dados do curso com ID 1 |
 | DELETE | /courses/1 | Deletar o curso com ID 1 |
 
-## Tipos de Parâmetros
-
-Existem 4 tipos de parâmetros que podem ser enviados na requisição.
-
-| Tipo | Descrição | Exemplo |
-| - | - | - |
-| Header | Enviados no cabeçalho "headers" da requisição | auth:258dsf5ad8d |
-| Route | Encapsulados na rota utilizando a "/" para separa da URL original | /courses/{id} |
-| Query | Enviados na URL da requisição para informar um filtro ou parametros de seleção | /courses?id=1 |
-| Body | Enviados no corpo da requisição "body" para criação ou atualização de um registro | {"name": "Curso 01"} |
-
 ## Quais parâmetros utilizar?
 
 Achei um link bacana que explica bem sobre os tipos de parâmetros.
@@ -537,6 +526,17 @@ Exemplo de Ferramentas:
 - Insomnia
 - Extension do VSCode REST Client
 
+## Tipos de Parâmetros
+
+Existem 4 tipos de parâmetros que podem ser enviados na requisição.
+
+| Tipo | Descrição | Exemplo |
+| - | - | - |
+| Header | Enviados no cabeçalho "headers" da requisição | auth:258dsf5ad8d |
+| Route | Encapsulados na rota utilizando a "/" para separa da URL original | /courses/{id} |
+| Query | Enviados na URL da requisição para informar um filtro ou parametros de seleção iniciando com "?" seguido de uma chave e um valor "id=1" e concatenando novos valores com "&" | /courses?id=1 |
+| Body | Enviados no corpo da requisição "body" para criação ou atualização de um registro, normalmente um JSON ou um XML | {"name": "Curso 01"} |
+
 ## Obtendo os valores enviados via Query Params
 
 ```js
@@ -617,6 +617,35 @@ app.post("/courses", (request, response) => {
 
   return response.json([
     { id: 1, name: "Curso 01" },
+    { id: 2, name: "Curso 02" },
+    { id: 3, name: "Curso 03" },
+    { id: 4, name: "Curso 04" },
+  ]);
+});
+```
+
+## Obtendo os valores enviados via header
+
+Observe que eu tenho varias formas de buscar, posso pegar apenas um parâmetro específico ou todos os parâmetros.
+
+```js
+// Rota de DELETE
+// Deleta um curso
+// No exemplo abaixo deleta o curso com ID 1
+app.delete("/courses/:id", (request, response) => {
+  // Criando uma constante para buscar os Header Params
+  const header = request.headers;
+
+  // Retornando o header
+  console.log(header);
+
+  // Busca apenas o parametro auth
+  const { auth } = request.headers;
+
+  // Retornando o aut
+  console.log(auth);
+
+  return response.json([
     { id: 2, name: "Curso 02" },
     { id: 3, name: "Curso 03" },
     { id: 4, name: "Curso 04" },

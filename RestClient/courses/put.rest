@@ -4,6 +4,7 @@
 // @name = Atualizando um registro ou um grupo de registros, neste caso registro cujo ID=2
 PUT {{baseUrl}}/courses/2 HTTP/1.1
 content-type: application/json
+auth:123456
 
 {
     "name": "Curso 02 Alterado"
