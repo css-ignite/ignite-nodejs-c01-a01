@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS/issues"
   },
-  "homepage": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS#readme"
+  "homepage": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }

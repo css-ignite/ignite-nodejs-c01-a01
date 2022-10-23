@@ -98,3 +98,59 @@ npm i
 npm install
 
 ```
+
+## Instalando o Express
+
+O Express é um framework para NodeJS que nos ajuda a criar aplicações web de forma mais simples e rápida.
+
+```bash
+
+## Instalando o Express na forma reduzida
+npm i express
+
+## Instalando o Express
+npm install express
+
+```
+
+Após a execução o comando cria a pasta node_modules e o arquivo package-lock.json
+
+Ele também altera o meu arquivo package.json adicionando a dependência do express.
+
+```json
+{
+  "name": "rocketseat-ignite-chapter01-fundamentos-nodejs",
+  "version": "1.0.0",
+  "description": "Fundamentos do NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS/issues"
+  },
+  "homepage": "https://github.com/claudneysessa/rocketseat-ignite-Chapter01-fundamentos-nodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+```
+
+## Ajustando o .gitingore
+
+Devo garantir que a pasta node_modules não seja enviada para o repositório do github, para isso crio um arquivo ```.gitignore``` na raiz do projeto e adiciono a pasta node_modules.
+
+Dentro do arquivo eu vou adicionar a pasta node_modules para que o git não envie esta pasta para o repositório.
+
+```.gitignore
+
+node_modules
+
+```
